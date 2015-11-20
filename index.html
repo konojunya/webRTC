@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<title>WebRTC</title>
+</head>
+<body>
+	 <video id="myVideo" autoplay width="800" height="800"></video>
+	 <style>
+	 body,html{
+		 text-align: center;
+	 }
+	 	video{
+			border-radius: 50%;
+			-webkit-filter: sepia(100%);
+			transform: scaleX(-1);
+			-webkit-animation: video .1s infinite;
+			-o-animation: video .1s infinite;
+			animation: video .1s infinite;
+			animation-fill-mode: forwards;
+		}
+		@-webkit-keyframes video {
+			0%{
+				transform: rotate(0deg);
+			}
+			100%{
+				transform:rotate(2880deg);
+		}
+		@-o-keyframes video {
+			0%{
+				transform: rotate(0deg);
+			}
+			100%{
+				transform:rotate(2880deg);
+		}
+		@-moz-keyframes video {
+			0%{
+				transform: rotate(0deg);
+			}
+			100%{
+				transform:rotate(2880deg);
+		}
+		@keyframes video {
+			0%{
+				transform: rotate(0deg);
+			}
+			100%{
+				transform:rotate(2880deg);
+		}
+	 </style>
+	<script type="text/javascript">
+    navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || window.navigator.mozGetUserMedia;
+    window.URL = window.URL || window.webkitURL;
+
+    var video = document.getElementById('myVideo');
+    var localStream = null;
+    navigator.getUserMedia({video: true, audio: false},
+        function(stream){
+          console.log(stream);
+          video.src = window.URL.createObjectURL(stream);
+        },
+        function(err){
+          console.log(err);
+        }
+      );
+  </script>
+</body>
+</html>
